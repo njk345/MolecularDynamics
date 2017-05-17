@@ -1,6 +1,4 @@
-package sample;
 import java.io.*;
-import javafx.scene.paint.Color;
 /**
  * Created by njk on 5/15/17.
  */
@@ -21,5 +19,20 @@ public class Utils {
             e.printStackTrace();
         }
         return data;
+    }
+    public static String[] loadElementSymbols() {
+        String[] symbols = new String[95];
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("data/ElementData.txt"));
+            for (int i = 0; i < 193; i++) {
+                br.readLine(); //skip first 193 lines
+            }
+            for (int i = 0; i < 95; i++) {
+                symbols[i] = br.readLine();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return symbols;
     }
 }
