@@ -30,7 +30,7 @@ public class Atom extends GCompound {
         body.setFilled(true);
         body.setFillColor(new Color(random.nextFloat(), random.nextFloat(), random.nextFloat()));
         add(body);
-        //add(symbol); //figure out how to center symbol in body
+        add(symbol);
         setLocation(loc);
         setVisible(true);
     }
