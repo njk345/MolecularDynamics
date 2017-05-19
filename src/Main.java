@@ -4,10 +4,12 @@
 import acm.program.GraphicsProgram;
 import acm.graphics.*;
 import java.awt.*;
-import java.util.Iterator;
+import java.util.ArrayList;
 
 public class Main extends GraphicsProgram {
     private static int sw, sh;
+    private static ArrayList<Atom> system;
+    private static Algorithm algo;
     @Override
     public void init() {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -16,20 +18,19 @@ public class Main extends GraphicsProgram {
         setSize(sw, sh);
         pause(50); //give container time to resize
 
-        for (int i = 1; i < 30; i++) {
-            add(new Atom(i, new GPoint(50*i, 50)));
+        //fill up system with some configuration of atoms
+        for (int i = 1; i < 20; i++) {
+            system.add(new Atom(i, new GPoint(50*i, 50)));
         }
-        //add(new Atom(95, new GPoint(200, 50)));
+        for (Atom a : system) {
+            add(a); //add whole system to screen
+        }
+        algo = new Verlet(system);
+        waitForClick();
     }
     @Override
     public void run() {
-        while (true) {
-            Iterator<GObject> iter = iterator();
-            while (iter.hasNext()) {
-                iter.next().move(0.01, 0.01);
-            }
-            pause(0.1);
-        }
+        algo.run();
     }
     public static void main(String[] args) {
         new Main().start();
