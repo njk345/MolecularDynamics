@@ -7,18 +7,18 @@ import java.util.Arrays;
 
 public class VelocityVerlet extends Algorithm {
     private static final double DT = 0.001;
+    private static double time = 0;
 
     public VelocityVerlet(ArrayList<Atom> system) {
         super(system);
     }
     public void setUpSystem() {
-        //getSystem().add(new Atom(1, new GPoint(Main.sw/2 - 25, Main.sh/2)));
-        //getSystem().add(new Atom(1, new GPoint(Main.sw/2 + 25, Main.sh/2)));
-        getSystem().add(new Atom(1, new double[]{24, 10}));
-        getSystem().add(new Atom(1, new double[]{26, 10}));
-        getSystem().add(new Atom(1, new double[]{25, 10 + Math.sqrt(3)}));
-        //getSystem().add(new Atom(1, new double[]{25, 12}));
-        //getSystem().add(new Atom(1, new GPoint(Main.sw/2, Main.sh/2)));
+        int w = 10, h = 10, d = 2;
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                getSystem().add(new Atom(1, new double[]{20 - (w-1)/2*d + j*d, 10 - (h-1)/2*d + i*d}));
+            }
+        }
     }
     public void run() {
         ArrayList<Atom> system = getSystem();
@@ -34,9 +34,14 @@ public class VelocityVerlet extends Algorithm {
                 double[] newLJForce = netForces(system.get(i), system);
                 system.get(i).velocityVerletUpdate2(newLJForce[0], newLJForce[1], DT);
             }
+            time += DT;
+            Main.timeMeter.setText("Time Elapsed: " + String.format("%10.3f",time) + " ps");
             try {
                 Thread.sleep(10);
             } catch(Exception e) {}
         }
+    }
+    public double getTime() {
+        return time;
     }
 }

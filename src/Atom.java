@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class Atom extends GCompound {
     private static double[][] data = Utils.loadElementData();
     private static String[] symbols = Utils.loadElementSymbols();
-    private static final double SCALE_FACTOR = Main.sw / 50.0; //pixels per "angstrom"
+    private static final double SCALE_FACTOR = Main.sw / 40.0; //pixels per "angstrom"
     private static final double MASS_FACTOR = 1.66E-27 / 4184 / 10E20 * 6.022E23 * 10E24;
     private static Random random = new Random();
 

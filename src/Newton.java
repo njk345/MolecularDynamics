@@ -12,6 +12,9 @@ public class Newton extends Algorithm {
     public void setUpSystem() {
 
     }
+    public double getTime() {
+        return 0; //havent gotten around to this one yet
+    }
     public void run() {
         ArrayList<Atom> system = getSystem();
         double[][] f = new double[system.size()][2];

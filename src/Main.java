@@ -4,11 +4,13 @@
 import acm.program.GraphicsProgram;
 import java.awt.*;
 import java.util.ArrayList;
+import javax.swing.JLabel;
 
 public class Main extends GraphicsProgram {
     public static int sw, sh;
     private static ArrayList<Atom> system;
     private static Algorithm algo;
+    public static JLabel timeMeter;
 
     @Override
     public void init() {
@@ -18,6 +20,8 @@ public class Main extends GraphicsProgram {
         setSize(sw, sh);
         pause(50); //give container time to resize
 
+        timeMeter = new JLabel("Time Elapsed: 0 ps");
+
         system = new ArrayList<>();
         algo = new VelocityVerlet(system);
         algo.setUpSystem(); //let the algorithm populate the system in its own way
@@ -25,6 +29,7 @@ public class Main extends GraphicsProgram {
         for (Atom a : system) {
             add(a); //add whole system to screen
         }
+        add(timeMeter, SOUTH);
         waitForClick();
     }
     @Override
