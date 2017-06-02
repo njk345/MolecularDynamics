@@ -9,6 +9,7 @@ public class Main extends GraphicsProgram {
     public static int sw, sh;
     private static ArrayList<Atom> system;
     private static Algorithm algo;
+
     @Override
     public void init() {
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
@@ -18,7 +19,7 @@ public class Main extends GraphicsProgram {
         pause(50); //give container time to resize
 
         system = new ArrayList<>();
-        algo = new Verlet(system);
+        algo = new VelocityVerlet(system);
         algo.setUpSystem(); //let the algorithm populate the system in its own way
 
         for (Atom a : system) {
