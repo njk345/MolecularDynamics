@@ -14,9 +14,19 @@ public class VelocityVerlet extends Algorithm {
     }
     public void setUpSystem() {
         int w = 10, h = 10, d = 2;
+//        for (int i = 0; i < h; i++) {
+//            for (int j = 0; j < w; j++) {
+//                getSystem().add(new Atom(1, new double[]{20 - (w-1)/2*d + j*d, 10 - (h-1)/2*d + i*d}));
+//            }
+//        }
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
-                getSystem().add(new Atom(1, new double[]{20 - (w-1)/2*d + j*d, 10 - (h-1)/2*d + i*d}));
+                getSystem().add(new Atom(1, new double[]{20 - d*((w-1)/2 - j), 10 - d*Math.sqrt(3)*((h-1)/4 - i)}));
+            }
+        }
+        for (int i = 0; i < h; i++) {
+            for (int j = 0; j < w; j++) {
+                getSystem().add(new Atom(1, new double[]{20 - d*((w-1)/2 - j + 0.5), 10 - d*Math.sqrt(3)*((h-1)/4 - i + 0.5)}));
             }
         }
     }
