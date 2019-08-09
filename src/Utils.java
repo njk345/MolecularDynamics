@@ -1,7 +1,9 @@
 /**
  * Created by njk on 5/15/17.
  */
-import java.io.*;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.HashMap;
 
 public class Utils {
@@ -22,6 +24,7 @@ public class Utils {
         }
         return data;
     }
+
     public static String[] loadElementSymbols() {
         String[] symbols = new String[95];
         try {
@@ -37,11 +40,12 @@ public class Utils {
         }
         return symbols;
     }
+
     public static HashMap<Integer, double[]> loadLJParams() {
         HashMap<Integer, double[]> params = new HashMap<>();
         try {
             BufferedReader br = new BufferedReader(new FileReader("data/ElementData.txt"));
-            for (int i = 0 ; i < 289; i++) {
+            for (int i = 0; i < 289; i++) {
                 br.readLine(); //skip first 289 lines
             }
             for (int i = 0; i < 25; i++) {
@@ -50,7 +54,7 @@ public class Utils {
                 double[] vals = new double[]{Double.parseDouble(line[2]), Double.parseDouble(line[3])};
                 params.put(key, vals);
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return params;

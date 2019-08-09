@@ -1,9 +1,8 @@
 /**
  * Created by keirsteadn on 5/19/17.
  */
+
 import java.util.ArrayList;
-import acm.graphics.*;
-import java.util.Arrays;
 
 public class VelocityVerlet extends Algorithm {
     private static final double DT = 0.001;
@@ -12,6 +11,7 @@ public class VelocityVerlet extends Algorithm {
     public VelocityVerlet(ArrayList<Atom> system) {
         super(system);
     }
+
     public void setUpSystem() {
         int w = 10, h = 10, d = 2;
 //        for (int i = 0; i < h; i++) {
@@ -21,15 +21,16 @@ public class VelocityVerlet extends Algorithm {
 //        }
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
-                getSystem().add(new Atom(1, new double[]{20 - d*((w-1)/2 - j), 10 - d*Math.sqrt(3)*((h-1)/4 - i)}));
+                getSystem().add(new Atom(1, new double[]{20 - d * ((w - 1) / 2 - j), 10 - d * Math.sqrt(3) * ((h - 1) / 4 - i)}));
             }
         }
         for (int i = 0; i < h; i++) {
             for (int j = 0; j < w; j++) {
-                getSystem().add(new Atom(1, new double[]{20 - d*((w-1)/2 - j + 0.5), 10 - d*Math.sqrt(3)*((h-1)/4 - i + 0.5)}));
+                getSystem().add(new Atom(1, new double[]{20 - d * ((w - 1) / 2 - j + 0.5), 10 - d * Math.sqrt(3) * ((h - 1) / 4 - i + 0.5)}));
             }
         }
     }
+
     public void run() {
         ArrayList<Atom> system = getSystem();
         double[][] f = new double[system.size()][2];
@@ -45,12 +46,14 @@ public class VelocityVerlet extends Algorithm {
                 system.get(i).velocityVerletUpdate2(newLJForce[0], newLJForce[1], DT);
             }
             time += DT;
-            Main.timeMeter.setText("Time Elapsed: " + String.format("%10.3f",time) + " ps");
+            Main.timeMeter.setText("Time Elapsed: " + String.format("%10.3f", time) + " ps");
             try {
                 Thread.sleep(10);
-            } catch(Exception e) {}
+            } catch (Exception e) {
+            }
         }
     }
+
     public double getTime() {
         return time;
     }
